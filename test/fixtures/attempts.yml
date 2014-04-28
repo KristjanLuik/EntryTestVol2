@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  registration_date: 2014-04-26 22:30:13
+  result: 1
+  start: 2014-04-26 22:30:13
+  end: 2014-04-26 22:30:13
+  timetable_id: 1
+  user_id: 1
+
+two:
+  registration_date: 2014-04-26 22:30:13
+  result: 1
+  start: 2014-04-26 22:30:13
+  end: 2014-04-26 22:30:13
+  timetable_id: 1
+  user_id: 1

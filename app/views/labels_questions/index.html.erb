@@ -1,0 +1,27 @@
+<h1>Listing labels_questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Label</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @labels_questions.each do |labels_question| %>
+      <tr>
+        <td><%= labels_question.question_id %></td>
+        <td><%= labels_question.label_id %></td>
+        <td><%= link_to 'Show', labels_question %></td>
+        <td><%= link_to 'Edit', edit_labels_question_path(labels_question) %></td>
+        <td><%= link_to 'Destroy', labels_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Labels question', new_labels_question_path %>

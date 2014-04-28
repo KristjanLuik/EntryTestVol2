@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @question.content %>
+</p>
+
+<p>
+  <strong>Difficulty:</strong>
+  <%= @question.difficulty %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @question.status %>
+</p>
+<h3>Answers</h3>
+<ul>
+	<% @question.answers.each do |answer| %>
+<li class="<%= answer.correct ? 'right-answer' : 'wrong-answer' %>"><%= answer.content %></li>
+	<% end %>
+</ul>
+
+<h3>Labels</h3>
+<ul>
+	<% @question.labels.each do |label| %>
+<li><%= label.name %></li>
+	<% end %>
+</ul>
+<%= link_to 'Edit', edit_question_path(@question) %> |
+<%= link_to 'Back', questions_path %>

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  registration_start: 2014-04-26 22:25:53
+  registration_end: 2014-04-26 22:25:53
+  start: 2014-04-26 22:25:53
+  end: 2014-04-26 22:25:53
+  slots: 1
+  location: MyString
+  test_id: 1
+
+two:
+  registration_start: 2014-04-26 22:25:53
+  registration_end: 2014-04-26 22:25:53
+  start: 2014-04-26 22:25:53
+  end: 2014-04-26 22:25:53
+  slots: 1
+  location: MyString
+  test_id: 1

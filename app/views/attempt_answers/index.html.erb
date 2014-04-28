@@ -1,0 +1,29 @@
+<h1>Listing attempt_answers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Answer</th>
+      <th>Attempt</th>
+      <th>Chosen</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attempt_answers.each do |attempt_answer| %>
+      <tr>
+        <td><%= attempt_answer.answer_id %></td>
+        <td><%= attempt_answer.attempt_id %></td>
+        <td><%= attempt_answer.chosen %></td>
+        <td><%= link_to 'Show', attempt_answer %></td>
+        <td><%= link_to 'Edit', edit_attempt_answer_path(attempt_answer) %></td>
+        <td><%= link_to 'Destroy', attempt_answer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attempt answer', new_attempt_answer_path %>

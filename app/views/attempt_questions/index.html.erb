@@ -1,0 +1,27 @@
+<h1>Listing attempt_questions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Attempt</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attempt_questions.each do |attempt_question| %>
+      <tr>
+        <td><%= attempt_question.question_id %></td>
+        <td><%= attempt_question.attempt_id %></td>
+        <td><%= link_to 'Show', attempt_question %></td>
+        <td><%= link_to 'Edit', edit_attempt_question_path(attempt_question) %></td>
+        <td><%= link_to 'Destroy', attempt_question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attempt question', new_attempt_question_path %>
