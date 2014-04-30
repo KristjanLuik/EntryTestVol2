@@ -26,40 +26,31 @@
 
 <fieldset id="answers">
   <legend>Answers</legend>
-   <button onclick="addInput()"  type="button">Add answer</button><br/>
-    <%#  AT THE MOMENT THERE IS ONLY ONE ANSWER  %>
-    <% if @answers=@question.answers and !@question.answers.empty? then 
-          @answers.each do |answer|
-      %>
-      <!-- EDIT EXISTING ANSWER-->
-      <p class="answer">
-              <%= hidden_field_tag 'answer[][id]' ,answer.id  %>
-              <%# text_field(:answer, :content, :placeholder => "enter the answer", :value=>answer.content ) %>
-              <%= text_area_tag 'answer[][content]' , answer.content %><br/>
-              <%= number_field_tag 'answer[][points]', answer.points , :size => 4 %>
-              correct? <%= check_box_tag 'answer[][correct]', true, answer.correct %>
-              </p>
-          <% end %>
-    <%else%>
-    <p class="answer">
-       <%= text_area_tag 'answer[][content]' %><br/>
-       <%= number_field_tag 'answer[][points]', :size => "4" %>
-       correct? <%= check_box_tag 'answer[][correct]', true %>
-       </p>
-    <% end %>
-      
-
+   <button id="addInput"  type="button">Add answer</button><br/>
+   <%= f.fields_for :answers do |answers_form| %>
+   <p> <span class="destroy_this"><%= answers_form.check_box :_destroy%></span></br>
+      <%= answers_form.text_area :content, placeholder: "Answer text" %> <br/>
+      <%= answers_form.number_field :points, size:4 , placeholder: "points" %>
+      <%= answers_form.label :correct %>
+      <%= answers_form.check_box :correct %>
+   </p>
+   <% end # answer form %>
 </fieldset>
 
 
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+<% end #question form %>
 <script>
+$(document).ready(function() { 
+
 answers=$("#answers");
-  inputs='<p class="answer"><textarea name="answer[][content]" placeholder="answer text"></textarea> <br/><input type="number" name="answer[][points]" placeholder="points" size="4"/> correct? <input type="checkbox" name="answer[][correct]" /></p>';
-function addInput(){
-  answers.append(inputs);
-}
+  $('#addInput').click(function(){  
+    n = answers.children("p").length;
+    inputs='<p><textarea name="question[answers_attributes]['+n+'][content]" placeholder="Answer text"></textarea> <br/><input name="question[answers_attributes]['+n+'][points]" placeholder="points" size="4" type="number" /> <label for="question_answers_attributes_'+n+'_correct">Correct</label> <input name="question[answers_attributes]['+n+'][correct]" type="hidden" value="0" /><input id="question_answers_attributes_'+n+'_correct" name="question[answers_attributes]['+n+'][correct]" type="checkbox" value="1" /></p>';
+    answers.append(inputs);
+  });
+});
+
 </script>
