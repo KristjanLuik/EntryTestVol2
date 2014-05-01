@@ -23,12 +23,35 @@
     <%= f.label :status %><br>
     <%= f.select :status, options_for_select(["Kinnitamata", "Kinnitatud", "Lukustatud"]) %>
   </div>
+
 <fieldset id="labels">
   <legend>Labels</legend>
-  <%= f.fields_for :labels do |labels_form| %>
-    <%= labels_form.text_field :name , :class=>"q_label" %>
-  <% end %>  
+  <ul id="added_labels">
+  <%# TODO: change into showing question_labels to enable removing existing labels%>
+  <%= f.fields_for :labels_questions do |existing_form| %>
+    <li class="change_label">
+      <%= existing_form.hidden_field :label_id , :class=>"q_label" %> 
+      <span class="fake_input"><%= existing_form.object.label.name%></span> 
+      <span class="delete"><%= existing_form.check_box :_destroy%></span>
+    </li>
+  <% end %>
+  <%= f.fields_for :labels do |label_form| %>
+    <% if label_form.object.id.nil? then %>
+      <li class="add_label">
+        <%= label_form.text_field :name , :class=>"q_label" %>
+      </li>
+    <% end %>   
+  <% end %>   
+  <%# TODO: add the possibility to add more labels by choosing from existing or by creating a new one %>
+  </ul>
+  <ul  id="existing_labels">
+      <% Label.all.each do |label| %>
+        <li onclick="label_is(<%= label.id %>, '<%= label.name %>')"><%= label.name %></li>
+      <% end %>
+  </ul>
+  
 </fieldset>
+
 <fieldset id="answers">
   <legend>Answers</legend>
    <button id="addInput"  type="button">Add answer</button><br/>
@@ -47,68 +70,3 @@
     <%= f.submit %>
   </div>
 <% end #question form %>
-<script>
-$(document).ready(function() { 
-
-answers=$("#answers");
-labels=$("#labels");
-  $('#addInput').click(function(){  
-    n = answers.children("p").length;
-
-    var par=document.createElement("p");
-    
-    var text=document.createElement("textarea");
-    text.name="question[answers_attributes]["+n+"][content]";
-    text.placeholder="Answer text";
-    par.appendChild(text);
-
-    var br=document.createElement("br");
-    par.appendChild(br);
-    
-    var points=document.createElement("input");
-    points.type="number";
-    points.size=4;
-    points.placeholder="Points";
-    points.name="question[answers_attributes]["+n+"][points]";
-    par.appendChild(points);
-    
-    var label=document.createElement("label");
-    label.for="question_answers_attributes_"+n+"_correct";
-    label.innerHTML="Correct";
-    par.appendChild(document.createTextNode(' '));
-    par.appendChild(label);
-    par.appendChild(document.createTextNode(' '));
-    
-    var correct=document.createElement("input");
-    correct.type="checkbox";
-    correct.name="question[answers_attributes]["+n+"][correct]";
-    correct.id='question_answers_attributes_'+n+'_correct';
-    par.appendChild(correct);
-
-    inputs='<p><textarea name="question[answers_attributes]['+n+'][content]" placeholder="Answer text"></textarea> <br/><input name="question[answers_attributes]['+n+'][points]" placeholder="points" size="4" type="number" /> <label for="question_answers_attributes_'+n+'_correct">Correct</label> <input name="question[answers_attributes]['+n+'][correct]" type="hidden" value="0" /><input id="question_answers_attributes_'+n+'_correct" name="question[answers_attributes]['+n+'][correct]" type="checkbox" value="1" /></p>';
-    answers.append(par);
-  });
-
-  $('#labels input').blur(function(){
-    console.log(labels.children('input').length);
-    addLabels();
-  });
-
-});
-
-function addLabels(){
-  if ($("#labels input:last-child").val() != "" ){
-    m=labels.children('input[type=text]').length;
-    var input=document.createElement('input');
-    input.type="text";
-    input.name='question[labels_attributes]['+m+'][name]';
-    input.class="q_label";
-    input.onblur=addLabels;
-    $("#labels").append(input);    
-    $("#labels").append(document.createTextNode(' '));
-    $("#labels input:last-child").focus();
-  }
-
-}
-
-</script>
