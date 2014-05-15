@@ -49,7 +49,7 @@
   </div>
   <div class="field">
     <%= f.label :role_id %><br>
-    <%= f.number_field :role_id %>
+    <%= f.select :role_id, options_from_collection_for_select(Role.all, :id, :name) %>
   </div>
   <div class="field">
     <%= f.label :password %><br>

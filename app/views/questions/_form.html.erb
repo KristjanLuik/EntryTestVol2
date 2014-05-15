@@ -20,6 +20,15 @@
     <%= f.select :difficulty, options_for_select(["kerge", "keskmine", "raske"]) %>
   </div>
   <div class="field">
+    <%= f.label :min_options %> - <%= f.label :max_options %><br>
+    <%= f.number_field :min_options , :size=>5 %> - <%= f.number_field :max_options , :size=>5 %>
+  </div>
+ <div class="field">
+    <%= f.label :min_correct %> - <%= f.label :max_correct %><br>
+    <%= f.number_field :min_correct , :size=>5 %> - <%= f.number_field :max_correct , :size=>5 %>
+  </div>
+  
+  <div class="field">
     <%= f.label :status %><br>
     <%= f.select :status, options_for_select(["Kinnitamata", "Kinnitatud", "Lukustatud"]) %>
   </div>

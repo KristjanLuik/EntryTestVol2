@@ -15,6 +15,17 @@
   <%= @question.status %>
 </p>
 <h3>Answers</h3>
+
+<p>
+  <strong>Possible answer count</strong>
+  <%= @question.min_options %> - <%= @question.max_options %>
+</p>
+
+<p>
+  <strong>Correct answers</strong>
+  <%= @question.min_correct %> - <%= @question.max_correct %>
+</p>
+
 <ul>
 	<% @question.answers.each do |answer| %>
 <li class="<%= answer.correct ? 'right-answer' : 'wrong-answer' %>"><%= answer.content %></li>
