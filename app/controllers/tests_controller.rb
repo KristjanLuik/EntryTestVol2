@@ -15,10 +15,12 @@ class TestsController < ApplicationController
   # GET /tests/new
   def new
     @test = Test.new
+    @test.timetables.build
   end
 
   # GET /tests/1/edit
   def edit
+    @test.timetables.build
   end
 
   # POST /tests
@@ -69,6 +71,6 @@ class TestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_params
-      params.require(:test).permit(:title, :description, :duration)
+      params.require(:test).permit(:title, :description, :duration, timetables_attributes: [:id, :registration_start, :registration_end, :start, :end, :slots, :location, :_destroy])
     end
 end

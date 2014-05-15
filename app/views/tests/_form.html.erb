@@ -23,6 +23,37 @@
     <%= f.label :duration %><br>
     <%= f.number_field :duration %>
   </div>
+  <fieldset>
+    <legend>Timetable</legend>
+    <%= f.fields_for :timetables do |timetables_form| %>
+
+      <div class="field">
+    <%= timetables_form.label :registration_start %><br>
+    <%= timetables_form.datetime_select :registration_start %>
+  </div>
+  <div class="field">
+    <%= timetables_form.label :registration_end %><br>
+    <%= timetables_form.datetime_select :registration_end %>
+  </div>
+  <div class="field">
+    <%= timetables_form.label :start %><br>
+    <%= timetables_form.datetime_select :start %>
+  </div>
+  <div class="field">
+    <%= timetables_form.label :end %><br>
+    <%= timetables_form.datetime_select :end %>
+  </div>
+  <div class="field">
+    <%= timetables_form.label :slots %><br>
+    <%= timetables_form.number_field :slots %>
+  </div>
+  <div class="field">
+    <%= timetables_form.label :location %><br>
+    <%= timetables_form.text_field :location %>
+  </div>
+
+    <% end %>
+  </fieldset>
   <div class="actions">
     <%= f.submit %>
   </div>
