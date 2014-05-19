@@ -5,6 +5,7 @@ $(document).ready(function() {
 
 answers=$("#answers");
 labels=$("#labels");
+
   $('#addInput').click(function(){  
      addInputs();
   });
@@ -26,7 +27,7 @@ labels=$("#labels");
  })
 });
 
-
+// add answer fields
 function addInputs(){
     n = answers.children("p").length;
 
@@ -64,9 +65,10 @@ function addInputs(){
 
 }
 
+// add labels 
 function addLabels(){
 	$("#existing_labels").hide();
-	
+	// if the last input is filled
 	if ($("#added_labels>li:last-child input[type=text]").val() != "" ){
   		console.log("lisame");
     	m=$("#added_labels").children('li').length;
@@ -110,29 +112,44 @@ function removeLabel(el){
     	li.hide();
     }
 }
+
+// show the existing label list for selection
+// TODO! : hide already bound labels
+// TODO: check why the dropdown flikers
 function showLabels(el){
 	$("#existing_labels").detach().appendTo(el).show();
-	setTimeout(function() {$("#existing_labels").hide();}, 3500);
+	//setTimeout(function() {$("#existing_labels").hide();}, 6000);
 }
 
 function label_is(nr, text){
 	li=$("#existing_labels").parent();
+  // change existing label
 	if ($(li).hasClass("change_label")) {
 		li.children("input[type=hidden]").val(nr);	
-		li.children("input[type=text]").attr("value",text);
+		li.children(".fake_input").html(text);
 	} else {
+    // add new elements to create new label-question connection
 		m = $("#added_labels").children('.change_label').length;
 				
 		hidden=document.createElement("input");
 		$(hidden).attr({"name": 'question[labels_questions_attributes]['+m+'][label_id]', "type":"hidden" });
 		$(hidden).appendTo(li);
-		
+		// remove the input now that we have chosen to use an exiting label
 		inp=$(li).children("input[type=text]");
-		inp.attr({"name": 'unused', "disabled":""} );
-		
-		$(li).attr("class", "change_label");
+    inp.remove();
+    // display the fake input to show the value
+		span=document.createElement("span");
+    $(span).attr("class", "fake_input").html(text);
+
+    $(span).appendTo(li);
+
+     $(li).append(document.createTextNode(' '));
+
+		$(li).attr("class", "change_label")
+    .click(function(){
+      showLabels($(this));
+    });
 		li.children("input[type=hidden]").val(nr);	
-		li.children("input[type=text]").attr("value",text);
 		addLabels();
 	}
 
