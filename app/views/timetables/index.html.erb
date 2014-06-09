@@ -1,10 +1,9 @@
 <h1>Listing timetables</h1>
 
-<table>
+<table class="table table-striped table-responsive">
   <thead>
     <tr>
-      <th>Registration start</th>
-      <th>Registration end</th>
+      <th>Registration</th>
       <th>Start</th>
       <th>End</th>
       <th>Slots</th>
@@ -17,13 +16,12 @@
   <tbody>
     <% @timetables.each do |timetable| %>
       <tr>
-        <td><%= timetable.registration_start %></td>
-        <td><%= timetable.registration_end %></td>
-        <td><%= timetable.start %></td>
-        <td><%= timetable.end %></td>
+        <td><%= timetable.registration_start.to_formatted_s(:long) %> - <%= timetable.registration_end.to_formatted_s(:long) %></td>
+        <td><%= timetable.start.to_formatted_s(:long) %></td>
+        <td><%= timetable.end.to_formatted_s(:long) %></td>
         <td><%= timetable.slots %></td>
         <td><%= timetable.location %></td>
-        <td><%= timetable.test_id %></td>
+        <td><%= timetable.test.title %></td>
         <td><%= link_to 'Show', timetable %></td>
         <td><%= link_to 'Edit', edit_timetable_path(timetable) %></td>
         <td><%= link_to 'Destroy', timetable, method: :delete, data: { confirm: 'Are you sure?' } %></td>

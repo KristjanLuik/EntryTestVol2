@@ -7,28 +7,32 @@ answers=$("#answers");
 labels=$("#labels");
 
   $('#addInput').click(function(){  
-     addInputs();
+     addAnswers();
   });
 
   $('#added_labels input[type=text]').change(function(){
     addLabels();
   });
+  // hide the existing label fields when deleting
   $("#added_labels .delete input").change(function(){
   	$(this).parents("li").hide();
   })
+  // allow to remove newly added labels
   $("#added_labels .remove input").change(function(){
   	removeLabel($(this));
   });
+  // allow binding existing labels
 	$('#added_labels .add_label input[type=text]').focus(function(){
     showLabels($(this).parent());
   });
+  // rebind existing labels
  $(".change_label").click(function(){
  	showLabels($(this));
  })
 });
 
-// add answer fields
-function addInputs(){
+// add answer fields when needed
+function addAnswers(){
     n = answers.children("p").length;
 
     var par=document.createElement("p");
@@ -65,9 +69,8 @@ function addInputs(){
 
 }
 
-// add labels 
+// add label fields when needed
 function addLabels(){
-	$("#existing_labels").hide();
 	// if the last input is filled
 	if ($("#added_labels>li:last-child input[type=text]").val() != "" ){
   		console.log("lisame");
@@ -104,6 +107,8 @@ function addLabels(){
     	$("#added_labels").append(li);    
   	}
 }
+
+
 function removeLabel(el){
 	li=el.parents("li"); 
 	// dont remove empty fields, then new labels can be added
@@ -113,14 +118,12 @@ function removeLabel(el){
     }
 }
 
-// show the existing label list for selection
-// TODO! : hide already bound labels
-// TODO: check why the dropdown flikers
+// bind the existing labels to the focused listelement
 function showLabels(el){
-	$("#existing_labels").detach().appendTo(el).show();
-	//setTimeout(function() {$("#existing_labels").hide();}, 6000);
+	$("#existing_labels").detach().appendTo(el);
 }
 
+// when clicking on an existing label
 function label_is(nr, text){
 	li=$("#existing_labels").parent();
   // change existing label
@@ -140,11 +143,8 @@ function label_is(nr, text){
     // display the fake input to show the value
 		span=document.createElement("span");
     $(span).attr("class", "fake_input").html(text);
-
     $(span).appendTo(li);
-
      $(li).append(document.createTextNode(' '));
-
 		$(li).attr("class", "change_label")
     .click(function(){
       showLabels($(this));
@@ -153,5 +153,4 @@ function label_is(nr, text){
 		addLabels();
 	}
 
-	$("#existing_labels").hide();
 }
