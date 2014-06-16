@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140515093447) do
+ActiveRecord::Schema.define(version: 20140616110714) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
     t.integer  "points"
     t.string   "status"
-    t.boolean  "correct"
+    t.boolean  "correct",     default: false
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"

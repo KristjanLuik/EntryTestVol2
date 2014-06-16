@@ -1,0 +1,18 @@
+<% @attempt.questions.each do |q| %>
+	<div class="question">
+		<h3><%=q.content%></h3>
+		<ul>
+			<% @attempt.answers.where(:question=>q).each do |a| %>
+				<li>
+					<span class="box"></span>
+					<%# check_box_tag("valik") %> 
+					<span class="content"><%= a.content %></span> 
+					<%#= a.correct ? "(true)":"(false)" %>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+
+<% end %>
+
+<%= link_to 'Back', attempts_path %>

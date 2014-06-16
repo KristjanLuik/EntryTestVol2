@@ -9,6 +9,7 @@
       <th>End</th>
       <th>Timetable</th>
       <th>User</th>
+      <th>View</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -18,10 +19,11 @@
       <tr>
         <td><%= attempt.registration_date %></td>
         <td><%= attempt.result %></td>
-        <td><%= attempt.start.to_formatted_s(:long)   %></td>
-        <td><%= attempt.end.to_formatted_s(:long) %></td>
-        <td><%= attempt.timetable_id %></td>
-        <td><%= attempt.user_id %></td>
+        <td><%= attempt.start.to_formatted_s(:long) if attempt.start  %></td>
+        <td><%= attempt.end.to_formatted_s(:long) if attempt.end %></td>
+        <td><%= attempt.timetable.test.title %> @ <%= attempt.timetable.start.to_formatted_s(:long) %></td>
+        <td><%= attempt.user.name %></td>
+        <td><%= link_to("View questions", controller: "attempts", action: "display", id: attempt) if attempt.start && !attempt.end %></td>
         <td><%= link_to 'Show', attempt %></td>
         <td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
         <td><%= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' } %></td>

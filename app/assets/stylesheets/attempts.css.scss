@@ -1,3 +1,39 @@
 // Place all the styles related to the attempts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.question {
+	margin:5px;
+	padding:10px;
+	border-radius:15px;
+	border: solid 1px rgba(0,0,0,0.25);
+}
+.question h3 {
+	margin:0px;
+	font-size: 16px;
+}
+.question ul {
+	margin:0px;
+	list-style:none;
+}
+.question li {
+	line-height:1.5em;
+	margin:0px;
+}
+.question input {
+	font-size:1.2em;
+}
+.question input, .question .content {
+	vertical-align:middle;
+	margin:0px;
+	padding:0px;
+}
+.question .box {
+display:inline-block;
+vertical-align:middle;
+	width:15px;
+	height:15px;
+	margin-right:10px;
+	border-radius:3px;
+	border: solid 1px rgba(0,0,0,0.25);
+}

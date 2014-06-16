@@ -63,6 +63,32 @@ class TestsController < ApplicationController
     end
   end
 
+
+# registration
+
+  def register
+    if !Attempt.exists?(:user_id=>1, :timetable_id=>params[:id])
+     # TODO! check if there is room!
+     
+     # get user, create attempt but dont start
+     attempt= Attempt.new
+     #attempt.user=current_user
+     attempt.user_id=1
+     attempt.timetable=Timetable.find(params[:id])
+     attempt.registration_date=DateTime.now
+     attempt.save
+      flash[:notice]="Registration successful";
+    else
+      flash[:error] ="You have already registered for this test!"
+    end
+  end
+
+  def unregister
+    # get user and test to unregister from
+    # should only be available while test is not started
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_test

@@ -1,8 +1,8 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Registration date:</strong>
-  <%= @attempt.registration_date %>
+  <%= @attempt.registration_date.to_formatted_s(:long) %>
 </p>
 
 <p>
@@ -12,22 +12,27 @@
 
 <p>
   <strong>Start:</strong>
-  <%= @attempt.start %>
+  <%= @attempt.start.to_formatted_s(:long) if @attempt.start %>
 </p>
 
 <p>
   <strong>End:</strong>
-  <%= @attempt.end %>
+  <%= @attempt.end.to_formatted_s(:long) if @attempt.end %>
 </p>
 
 <p>
   <strong>Timetable:</strong>
-  <%= @attempt.timetable_id %>
+  <%= @attempt.timetable.test.title %> @ <%= @attempt.timetable.start.to_formatted_s(:long) %> - <%= @attempt.timetable.end.to_formatted_s(:long) %>
 </p>
 
 <p>
   <strong>User:</strong>
   <%= @attempt.user_id %>
+</p>
+<p>
+  <%= link_to("Start", controller: "attempts", action: "start", id: @attempt) if !@attempt.start %>
+  <%= link_to("End", controller: "attempts", action: "end", id: @attempt) if @attempt.start && !@attempt.end %>
+   <%= link_to("View questions", controller: "attempts", action: "display", id: @attempt) if @attempt.start && !@attempt.end %>
 </p>
 
 <%= link_to 'Edit', edit_attempt_path(@attempt) %> |

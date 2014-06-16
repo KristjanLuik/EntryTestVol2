@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  get 'register/:id' => 'tests#register'
+  get 'start/:id' => 'attempts#start'
+  get 'end/:id' => 'attempts#end'
+  get 'view/:id' => 'attempts#display'
+
+  
   resources :attempt_answers
 
   resources :attempt_questions

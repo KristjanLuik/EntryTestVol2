@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <p>
   <strong>Title:</strong>
   <%= @test.title %>
@@ -14,6 +12,29 @@
   <strong>Duration:</strong>
   <%= @test.duration %>
 </p>
-
+<div>
+	Timetables
+	<ol>
+	<% @test.timetables.each do |time| %>
+		<li> Location: <%= time.location %> (<%= time.slots %> places)
+			<ul>
+				<li>
+					Registration from 
+					<%= time.registration_start.to_formatted_s(:long) %>
+					 to 
+					<%= time.registration_end.to_formatted_s(:long) %>
+					<%= link_to("Register", controller: "tests", action: "register", id: time) if DateTime.now.between?(time.registration_start, time.registration_end) %>
+				</li>
+				<li>
+					Takes place from 
+					<%= time.start.to_formatted_s(:long) %>
+					 to 
+					<%= time.end.to_formatted_s(:long) %>
+				</li>
+			</ul>
+		</li>
+	<% end %>
+	</ol>
+</div>
 <%= link_to 'Edit', edit_test_path(@test) %> |
 <%= link_to 'Back', tests_path %>
