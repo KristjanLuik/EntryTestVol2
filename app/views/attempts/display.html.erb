@@ -1,6 +1,7 @@
+<ol>
 <% @attempt.questions.each do |q| %>
-	<div class="question">
-		<h3><%=q.content%></h3>
+	<li class="question">
+		<span class="text"><%=q.content%></span>
 		<ul>
 			<% @attempt.answers.where(:question=>q).each do |a| %>
 				<li>
@@ -11,8 +12,8 @@
 				</li>
 			<% end %>
 		</ul>
-	</div>
+	</li>
 
 <% end %>
-
+</ol>
 <%= link_to 'Back', attempts_path %>
