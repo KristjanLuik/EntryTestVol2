@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   get 'end/:id' => 'attempts#end'
   get 'view/:id' => 'attempts#display'
 
-  
+# TEMPORARY
+  get "attempts/reset" => 'attempts#reset'
+
+
   resources :attempt_answers
 
   resources :attempt_questions

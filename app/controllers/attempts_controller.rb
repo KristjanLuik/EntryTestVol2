@@ -63,10 +63,13 @@ class AttemptsController < ApplicationController
 
 # display attempt ion test format - meant for simple users
 def display
-
+ if !@attempt.start || @attempt.end then
+   redirect_to @attempt, :flash => { :error => 'Attempt has to be active.' }
+ end
 end
 
 # start attempt - set start time and generate test
+# TODO! user / role-specific
   def start
    if !@attempt.start then 
      @attempt.start=DateTime.now
@@ -81,11 +84,14 @@ end
         end
       end
    else 
-    redirect_to @attempt, notice: 'Attempt was already started.' 
+    redirect_to @attempt, :flash => { :error => 'Attempt was already started.' }
    end
   end
+
 # end attempt - set end time and grade the answers
+# TODO! user / role-specific
   def end
+    if !@attempt.end && @attempt.start then
      @attempt.end=DateTime.now
     respond_to do |format|
       if @attempt.save
@@ -96,7 +102,18 @@ end
         format.json { render json: @attempt.errors, status: :unprocessable_entity }
       end
     end
+  else
+    redirect_to @attempt, :flash => { :error => 'Attempt has to be active.' }
   end
+  end
+
+# TEMPORARY, DELETE ON FIRST OPPURTUNITY
+def reset
+  AttemptAnswer.all.each do |a| a.destroy end
+  AttemptQuestion.all.each do |a| a.destroy end
+  Attempt.all.each do |a| a.update(:start=>"", :end=>"") end
+  redirect_to attempts_path, :flash => { :notice => 'Attempts have been reset.' }
+end
 
   private
     # Use callbacks to share common setup or constraints between actions.

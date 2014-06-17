@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 ol {
 	list-style-position:inside;
+	padding:0px;
 }
 .question {
 	margin:5px;
@@ -39,4 +40,19 @@ vertical-align:middle;
 	margin-right:10px;
 	border-radius:3px;
 	border: solid 1px rgba(0,0,0,0.25);
+}
+
+@media print {
+
+	@page { margin: 20px 0px; }
+
+    .nav, a{display:none;}
+
+    .question {
+    page-break-inside:avoid;
+      margin:5px;
+  	  padding:5px;
+	  border:none;
+    }
+
 }

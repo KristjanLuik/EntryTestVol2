@@ -1,28 +1,60 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This README documents whatever steps are necessary to get the application up and running.
 
-Things you may want to cover:
+= Info
 
-* Ruby version
+* Ruby 2.1.1p76, Rails 4.1.0 
 
-* System dependencies
+* Database commands
 
-* Configuration
+ rake db:migrate 
+ rake db:seed
 
-* Database creation
+* this rails application is very much a WIP!!!
 
-* Database initialization
+= Useage
 
-* How to run the test suite
+This is a temporary guide on how to use the page while it is still unfinished.
 
-* Services (job queues, cache servers, search engines, etc.)
+== Adding questions
 
-* Deployment instructions
+Use the questions menu to add questions.
 
-* ...
+All questions are displayed as a table. A link to add another question is under the table.
 
+While adding / updating questions you can freely add/edit answers and manage labels (create new labels or bind existing ones).
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+== Creating tests
+
+Use the tests menu to add tests, manage timetables and attempts
+
+All tests are displayed as a table. A link to add another test is under the table.
+
+While adding / updating tests you can freely add/edit timeslots.
+
+== Print tests
+
+To print out a version of the test:
+
+* add all questions (at the moment all questions are added to any test)
+
+* create 1 test with atleast 1 timetable
+
+* register to the test (on the test page)
+
+* use the attempt page to start the attempt (questions wil be chosen in random order with randomized answers)
+
+* use the 'view questions' link to see the test
+
+* use the browsers built-in printing functionality
+
+NB! While using the browser built-in printing make sure to DISABLE printing headers and footers
+
+Page breaking will be avoided inside questions. This might result in some exess space at the end of pages.
+
+= Copyright
+
+This application has been developed by:
+
+* Tiia Tänav (2014)
