@@ -19,14 +19,28 @@
     <%= f.label :difficulty %><br>
     <%= f.select :difficulty, options_for_select(["kerge", "keskmine", "raske"]) %>
   </div>
-  <div class="field">
-    <%= f.label :min_options %> - <%= f.label :max_options %><br>
-    <%= f.number_field :min_options , :size=>5 %> - <%= f.number_field :max_options , :size=>5 %>
-  </div>
- <div class="field">
-    <%= f.label :min_correct %> - <%= f.label :max_correct %><br>
-    <%= f.number_field :min_correct , :size=>5 %> - <%= f.number_field :max_correct , :size=>5 %>
-  </div>
+  <table class="table-striped table-responsive text-center">
+    <tr>
+      <th><%= f.label :min_options %></th>
+      <th>&nbsp;&nbsp;-&nbsp;&nbsp;</th>
+      <th><%= f.label :max_options %></th>
+    </tr>
+    <tr>
+      <td><%= f.number_field :min_options , :size=>5 %></td>
+      <td> - </td>
+      <td><%= f.number_field :max_options , :size=>5 %></td>
+    </tr>
+    <tr>
+      <th><%= f.label :min_correct %></th>
+      <th>&nbsp;&nbsp;-&nbsp;&nbsp;</th>
+      <th><%= f.label :max_correct %></th>
+    </tr>
+    <tr>
+      <td><%= f.number_field :min_correct , :size=>5 %></td>
+      <td> - </td>
+      <td><%= f.number_field :max_correct , :size=>5 %></td>
+    </tr>
+  </table>
   
   <div class="field">
     <%= f.label :status %><br>
@@ -50,7 +64,7 @@
         <%= label_form.text_field :name , :class=>"q_label" %>
       </li>
     <% end %>   
-  <% end %>   
+  <% end #label form %>   
   <%# TODO: add the possibility to add more labels by choosing from existing or by creating a new one %>
   </ul>
   <ul  id="existing_labels">
@@ -65,7 +79,11 @@
   <legend>Answers</legend>
    <button id="addInput"  type="button">Add answer</button><br/>
    <%= f.fields_for :answers do |answers_form| %>
-   <p> <span class="destroy_this"><%= answers_form.check_box :_destroy%></span></br>
+   <p> 
+      <span class="destroy_this">
+        <%= answers_form.check_box :_destroy%>  <%= answers_form.label :_destroy, 'Remove' %>
+      </span>
+      </br>
       <%= answers_form.text_area :content, placeholder: "Answer text" %> <br/>
       <%= answers_form.number_field :points, size:4 , placeholder: "points" %>
       <%= answers_form.label :correct %>

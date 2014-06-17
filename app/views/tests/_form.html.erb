@@ -27,31 +27,37 @@
     <legend>Timetable</legend>
     <%= f.fields_for :timetables do |timetables_form| %>
       <span class="delete"><%= timetables_form.check_box :_destroy%></span> <%= timetables_form.label :_destroy %><br/>
-      <table class="table table-striped table-responsive">
+      <table class="table-striped table-responsive">
         <tr>
           <th><%= timetables_form.label :registration_start %></th>
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
           <th><%= timetables_form.label :registration_end %></th>
         </tr>
         <tr>
           <td><%= timetables_form.datetime_select :registration_start %></td>
+          <td>&nbsp;&nbsp;- </td>
           <td><%= timetables_form.datetime_select :registration_end %></td>
         </tr>
 
         <tr>
           <th><%= timetables_form.label :start %></th>
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
           <th><%= timetables_form.label :end %></th>
         </tr>
         <tr>
           <td><%= timetables_form.datetime_select :start %></td>
+          <td>&nbsp;&nbsp;- </td>
           <td><%= timetables_form.datetime_select :end %></td>
         </tr>
 
         <tr>
           <th><%= timetables_form.label :slots %></th>
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;</th>
           <th><%= timetables_form.label :location %></th>
         </tr>
         <tr>
           <td><%= timetables_form.number_field :slots %></td>
+          <td>  </td>
           <td><%= timetables_form.text_field :location %></td>
         </tr>
       </table>
