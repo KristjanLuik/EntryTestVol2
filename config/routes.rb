@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'view/:id' => 'attempts#display'
 
 # TEMPORARY
+  get 'reroll/:id' => 'attempts#restart'
   get "attempts/reset" => 'attempts#reset'
 
 

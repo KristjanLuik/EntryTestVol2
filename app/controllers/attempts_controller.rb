@@ -1,5 +1,5 @@
 class AttemptsController < ApplicationController
-  before_action :set_attempt, only: [:show, :edit, :update, :destroy, :start, :end, :display]
+  before_action :set_attempt, only: [:show, :edit, :update, :destroy, :start, :end, :display, :restart]
 
   # GET /attempts
   # GET /attempts.json
@@ -106,6 +106,14 @@ end
     redirect_to @attempt, :flash => { :error => 'Attempt has to be active.' }
   end
   end
+
+def restart
+  @attempt.attempt_questions.each do |a| a.destroy end
+  @attempt.attempt_answers.each do |a| a.destroy end
+  @attempt.generate_test 
+  redirect_to :back, :flash => { :notice => 'Attempt has been reset.' }
+end
+
 
 # TEMPORARY, DELETE ON FIRST OPPURTUNITY
 def reset

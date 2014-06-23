@@ -67,7 +67,9 @@ class TestsController < ApplicationController
 # registration
 
   def register
-    if !Attempt.exists?(:user_id=>1, :timetable_id=>params[:id])
+    # ajutiselt laseme mitu korda regada, et poleks vaja mitut timetable-t
+    #if !Attempt.exists?(:user_id=>1, :timetable_id=>params[:id])
+    if true then 
      # TODO! check if there is room!
      
      # get user, create attempt but dont start

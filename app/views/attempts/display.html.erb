@@ -1,3 +1,28 @@
+<!--  FOR PRINT VIEW 
+
+Testil on igal lehel näga variandi tähis (nt lk nr on A1, A2 jne)
+Andmed kandidaadilt: nimi, isikukood (tühajd lahtrid)
+Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt) ei lähe arvesse
+-->
+<div id="header"><%= @attempt.timetable.test.title %> - <%= ('A'..'Z').first(@attempt.id).last %></div>
+
+<div id="regist">
+	<p>Väljad täita selge käekirjaga. Soditud, ebaselge või muud moodi loetamatu nimi ei lähe arvesse.</p>
+	<table >
+		<tr>
+			<td><b>Nimi: </b></td>
+			<td><input type="text" size="50"/></td>
+		</tr>
+		<tr>
+			<td><b>Isikukood: </b></td>
+			<td><input type="text" size="50"/></td>
+		</tr>
+	</table>
+	
+</div>
+<div id="footer"></div>
+
+<!-- FOR QUESTIONAIRE -->
 <ol>
 <% @attempt.questions.each do |q| %>
 	<li class="question">
@@ -5,7 +30,7 @@
 		<ul>
 			<% @attempt.answers.where(:question=>q).each do |a| %>
 				<li>
-					<span class="box"></span>
+					<!-- <span class="box"></span> -->
 					<%# check_box_tag("valik") %> 
 					<span class="content"><%= a.content %></span> 
 					<%#= a.correct ? "(true)":"(false)" %>
@@ -16,4 +41,6 @@
 
 <% end %>
 </ol>
-<%= link_to 'Back', attempts_path %>
+<%= link_to 'Back', attempts_path %> | 
+<%= link_to("Reroll", controller: "attempts", action: "restart", id: @attempt) %>
+
