@@ -4,7 +4,7 @@ Testil on igal lehel näga variandi tähis (nt lk nr on A1, A2 jne)
 Andmed kandidaadilt: nimi, isikukood (tühajd lahtrid)
 Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt) ei lähe arvesse
 -->
-<div id="header"><%= @attempt.timetable.test.title %> - <%= ('A'..'Z').first(@attempt.id).last %></div>
+<div id="header"><%= @attempt.timetable.test.title %> - <p id="version"><span><%= ('A'..'Z').first(@attempt.id).last %></span></p></div>
 
 <div id="regist">
 	<p>Väljad täita selge käekirjaga. Soditud, ebaselge või muud moodi loetamatu nimi ei lähe arvesse.</p>
@@ -41,6 +41,6 @@ Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt
 
 <% end %>
 </ol>
-<%= link_to 'Back', attempts_path %> | 
+<%= link_to 'Back', attempts_path %> 
 <%= link_to("Reroll", controller: "attempts", action: "restart", id: @attempt) %>
 
