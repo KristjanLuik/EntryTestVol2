@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140617093418) do
+ActiveRecord::Schema.define(version: 20140625094656) do
 
   create_table "answers", force: true do |t|
     t.text     "content"
@@ -87,6 +87,9 @@ ActiveRecord::Schema.define(version: 20140617093418) do
     t.integer  "duration"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "hard_count"
+    t.integer  "medium_count"
+    t.integer  "easy_count"
   end
 
   create_table "timetables", force: true do |t|

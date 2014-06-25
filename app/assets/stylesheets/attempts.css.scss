@@ -27,7 +27,7 @@ ol {
 .question input {
 	font-size:1.2em;
 }
-.question input, .question .content {
+.question input, .question .content, .question .a_points {
 	vertical-align:middle;
 	margin:0px;
 	padding:0px;
@@ -40,6 +40,11 @@ vertical-align:middle;
 	margin-right:10px;
 	border-radius:3px;
 	border: solid 1px rgba(0,0,0,0.25);
+}
+
+.correct_answer{
+	font-weight:bold;
+	color:green;
 }
 
 /*  registration form  */
@@ -65,7 +70,7 @@ vertical-align:middle;
 }
 
 #header {
-		/*display:none;*/
+		display:none;
     	position:fixed;
     	top:3px;
     	right:0px;

@@ -8,6 +8,8 @@
   <%= @test.description %>
 </p>
 
+<p>This test has <b class="hard"><%= @test.hard_count %> hard</b>, <b class="medium"><%= @test.medium_count %> medium</b> and <b class="easy"><%= @test.easy_count %> easy</b>  questions</p>
+
 <p>
   <strong>Duration:</strong>
   <%= @test.duration %>

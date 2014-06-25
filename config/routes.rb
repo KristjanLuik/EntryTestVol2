@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   get 'start/:id' => 'attempts#start'
   get 'end/:id' => 'attempts#end'
   get 'view/:id' => 'attempts#display'
-
+   get 'grade/:id' => 'attempts#grade'
 # TEMPORARY
   get 'reroll/:id' => 'attempts#restart'
   get "attempts/reset" => 'attempts#reset'

@@ -1,5 +1,5 @@
 class AttemptsController < ApplicationController
-  before_action :set_attempt, only: [:show, :edit, :update, :destroy, :start, :end, :display, :restart]
+  before_action :set_attempt, only: [:show, :edit, :update, :destroy, :start, :end, :display, :grade, :restart]
 
   # GET /attempts
   # GET /attempts.json
@@ -66,6 +66,11 @@ def display
  if !@attempt.start || @attempt.end then
    redirect_to @attempt, :flash => { :error => 'Attempt has to be active.' }
  end
+end
+
+def grade
+  @grading=true
+  render :display
 end
 
 # start attempt - set start time and generate test

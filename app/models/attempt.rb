@@ -13,9 +13,9 @@ def generate_test
 	test=self.timetable.test
 	# vali testiga seotud kysimused (seos on l2bi labelite?) TODO!
 
-	self.add_by_difficulty('raske', 0)
-	self.add_by_difficulty('keskmine', 0)
-	self.add_by_difficulty('kerge', 0)		
+	self.add_by_difficulty('kerge', test.easy_count)
+	self.add_by_difficulty('keskmine', test.medium_count)
+	self.add_by_difficulty('raske', test.hard_count)		
 	# questions = Question.order("RANDOM()").all # ajutine!
 	# # salvesta kysimused attempti kylge
 	# questions.each do |q|
@@ -42,7 +42,7 @@ end
 
 def add_by_difficulty(level, count)
 
- 	questions = Question.where("difficulty = ?", level).order("RANDOM()").all # ajutine!
+ 	questions = Question.where("difficulty = ?", level).order("RANDOM()").first(count) #all # ajutine!
 	# salvesta kysimused attempti kylge
 	questions.each do |q|
 		aq = AttemptQuestion.create(:question=>q, :attempt=>self)
