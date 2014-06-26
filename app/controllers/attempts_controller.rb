@@ -116,7 +116,7 @@ def restart
   @attempt.attempt_questions.each do |a| a.destroy end
   @attempt.attempt_answers.each do |a| a.destroy end
   @attempt.generate_test 
-  redirect_to :back, :flash => { :notice => 'Attempt has been reset.' }
+  redirect_to :back
 end
 
 
@@ -125,7 +125,7 @@ def reset
   AttemptAnswer.all.each do |a| a.destroy end
   AttemptQuestion.all.each do |a| a.destroy end
   Attempt.all.each do |a| a.update(:start=>"", :end=>"") end
-  redirect_to attempts_path, :flash => { :notice => 'Attempts have been reset.' }
+  redirect_to attempts_path
 end
 
   private
