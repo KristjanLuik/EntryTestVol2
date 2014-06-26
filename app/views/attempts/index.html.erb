@@ -25,7 +25,8 @@
         <td><%= attempt.user.name %></td>
         <td> <%= link_to("Start", controller: "attempts", action: "start", id: attempt) if !attempt.start %></td>
         <td><%= link_to("End", controller: "attempts", action: "end", id: attempt) if attempt.start && !attempt.end %></td>
-        <td><%= link_to("View questions", controller: "attempts", action: "display", id: attempt) if attempt.start && !attempt.end %></td>
+        <td><%= link_to("Test version", controller: "attempts", action: "display", id: attempt) if attempt.start && !attempt.end %></td>
+        <td><%= link_to("Grading version", controller: "attempts", action: "grade", id: attempt) if attempt.start && !attempt.end %></td>
         <td><%= link_to 'Show', attempt %></td>
         <td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
         <td><%= link_to 'Destroy', attempt, method: :delete, data: { confirm: 'Are you sure?' } %></td>
