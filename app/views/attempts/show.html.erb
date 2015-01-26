@@ -22,7 +22,7 @@
 
 <p>
   <strong>Timetable:</strong>
-  <%= @attempt.timetable.test.title %> @ <%= @attempt.timetable.start.to_formatted_s(:long) %> - <%= @attempt.timetable.end.to_formatted_s(:long) %>
+  <%= @attempt.timetable.test.title if @attempt.timetable %> @ <%= @attempt.timetable.start.to_formatted_s(:long) if @attempt.timetable %> - <%= @attempt.timetable.end.to_formatted_s(:long) if @attempt.timetable%>
 </p>
 
 <p>

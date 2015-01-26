@@ -42,7 +42,7 @@ end
 
 def add_by_difficulty(level, count)
 
- 	questions = Question.where("difficulty = ?", level).order("RANDOM()").first(count) #all # ajutine!
+ 	questions = Question.where("difficulty = ?", level).order("RANDOM()").first( count ? count : 1 ) #all # ajutine!
 	# salvesta kysimused attempti kylge
 	questions.each do |q|
 		aq = AttemptQuestion.create(:question=>q, :attempt=>self)

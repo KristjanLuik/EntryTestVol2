@@ -41,6 +41,8 @@ To print out a version of the test:
 
 * create 1 test with atleast 1 timetable
 
+* the test has to know how many questions for each difficulty there are (default: 1 per difficulty)
+
 * register to the test (on the test page)
 
 * use the attempt page to start the attempt (questions wil be chosen in random order with randomized answers)
@@ -53,7 +55,7 @@ NB! While using the browser built-in printing make sure to DISABLE printing head
 
 Page breaking will be avoided inside questions. This might result in some exess space at the end of pages.
 
-= Copyright
+= Authors
 
 This application has been developed by:
 
