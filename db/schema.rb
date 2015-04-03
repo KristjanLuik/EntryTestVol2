@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 20140625094656) do
   create_table "answers", force: true do |t|
     t.text     "content"
     t.integer  "points"
-    t.boolean  "status",      limit: 255, default: false
-    t.boolean  "correct",                 default: false
+    t.boolean  "status",      default: false
+    t.boolean  "correct",     default: false
     t.integer  "question_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140625094656) do
   create_table "questions", force: true do |t|
     t.text     "content"
     t.string   "difficulty"
-    t.boolean  "status",      limit: 255, default: false
+    t.boolean  "status",      default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "max_options"
