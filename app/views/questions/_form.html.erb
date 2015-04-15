@@ -98,8 +98,8 @@
                 <input type="checkbox" value="1"><label>Remove</label>
             </span>
       <br>
-      <textarea placeholder="Answer text" ></textarea> <br>
-      <input type="number" size="4" placeholder="points" >
+      <textarea placeholder="Answer text" name="answer[content]"></textarea> <br>
+      <input type="number" size="4" placeholder="points" name="answer[points]" >
       <label>Correct</label>
       <input type="hidden" value="0">
       <input type="checkbox" value="1">
@@ -115,3 +115,4 @@
     <%= f.submit %>
   </div>
 <% end #question form %>
+<div style="width: 67px; height: 22px; border: dashed; background-color: #31708f" id="saadavastus" ng-click='saada()'>Push me</div>
