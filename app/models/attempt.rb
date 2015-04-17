@@ -19,17 +19,19 @@ end
 
 def add_by_difficulty(level, count)
 
- 	questions = Question.where("difficulty = ?", level).order("RANDOM()").first( count ? count : 1 ) #all # ajutine!
+ 	questions = Question.where("difficulty = ?", level).order("RAND()").first( count ? count : 1 ) #all # ajutine!
 	# salvesta kysimused attempti kylge
 	questions.each do |q|
 		aq = AttemptQuestion.create(:question=>q, :attempt=>self)
 		# vali salvestatud kysimuse vastused
+    print "Kysimus"
+    print q.inspect
 		a_count=rand(q.min_options..q.max_options)
 		c_count=rand(q.min_correct..q.max_correct)
 		f_count=a_count-c_count
 		#logger.debug "\nthere are #{c_count} correct and #{f_count} incorrect answers \n"
-		c = Answer.where(:correct=>true, :question=> q).order("RANDOM()").first(c_count)
-		f = Answer.where(:correct=>false, :question=> q).order("RANDOM()").first(f_count)
+		c = Answer.where(:correct=>true, :question=> q).order("RAND()").first(c_count)
+		f = Answer.where(:correct=>false, :question=> q).order("RAND()").first(f_count)
 		answers= c + f
 		#logger.debug "\ngot #{c.count} correct and #{f.count} incorrect answers totaling at #{answers.count} (before shuffle)\n"
 		answers.shuffle!

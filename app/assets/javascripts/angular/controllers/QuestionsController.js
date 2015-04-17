@@ -9,7 +9,7 @@ function QuestionsController($scope){
         $.ajax({
             url: '/answers',
             type: 'POST',
-            data: asi, /*$('#new_post').serialize(),*/
+            data: /*asi*/$('#answers2').serialize(), /*$('#new_post').serialize(),*/
             success: function(response){
                 console.log('Laks edukalt, respnsose:');
                // console.log(response);
@@ -20,7 +20,7 @@ function QuestionsController($scope){
             }
         });
         console.log($('#answers2').serialize());
-/*        console.log('Ilma serita');
+/*       console.log('Ilma serita');
         console.log($('#new_question'));
         console.log('seriga');
         console.log($('#new_question').serialize());*/

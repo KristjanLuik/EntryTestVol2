@@ -21,7 +21,7 @@
         <td><%= timetable.end.to_formatted_s(:long) %></td>
         <td><%= timetable.slots %></td>
         <td><%= timetable.location %></td>
-        <td><%= timetable.test.title %></td>
+
         <td><%= link_to 'Show', timetable %></td>
         <td><%= link_to 'Edit', edit_timetable_path(timetable) %></td>
         <td><%= link_to 'Destroy', timetable, method: :delete, data: { confirm: 'Are you sure?' } %></td>
