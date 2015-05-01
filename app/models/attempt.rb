@@ -24,8 +24,6 @@ def add_by_difficulty(level, count)
 	questions.each do |q|
 		aq = AttemptQuestion.create(:question=>q, :attempt=>self)
 		# vali salvestatud kysimuse vastused
-    print "Kysimus"
-    print q.inspect
 		a_count=rand(q.min_options..q.max_options)
 		c_count=rand(q.min_correct..q.max_correct)
 		f_count=a_count-c_count
