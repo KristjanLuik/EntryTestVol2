@@ -33,7 +33,7 @@ Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt
 
       <%= form_tag('/attempt_answers/new',remote: true) do %>
           <div><%= submit_tag 'Save' %></div>
-          <%= text_field_tag %>
+
       <% end %>
 	<li class="question">
 		<span class="text"><%=q.content%></span>
@@ -41,7 +41,6 @@ Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt
 			<span class="q_points">(<%= @attempt.answers.where(:question=>q).sum(:points) %> p)</span>
 		<% end %>
 		<ul>
-          <%= q.inspect %>
 			<% @attempt.answers.where(:question=>q).each do |a| %>
 				<li class="<%= (a.correct and @grading!=nil) ? "correct_answer":"" %>">
 					<!-- <span class="box"></span> -->
