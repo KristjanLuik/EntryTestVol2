@@ -28,14 +28,20 @@ Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt
 <!-- FOR QUESTIONAIRE -->
 
 <ol>
+
+  <% @test.each do |pie|  %>
+  <%= pie.inspect %><br />
+  <% end  %>
 <% @attempt.questions.each do |q| %>
 
 
+
+	<li class="question">
       <%= form_tag('/attempt_answers/new',remote: true) do %>
           <div><%= submit_tag 'Save' %></div>
+          <%= hidden_field_tag(:attempt_id, @attempt.id) %>
+          <%= hidden_field_tag(:attempt_id, @attempt.id) %>
 
-      <% end %>
-	<li class="question">
 		<span class="text"><%=q.content%></span>
 		<% if @grading then %>
 			<span class="q_points">(<%= @attempt.answers.where(:question=>q).sum(:points) %> p)</span>
@@ -44,7 +50,8 @@ Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt
 			<% @attempt.answers.where(:question=>q).each do |a| %>
 				<li class="<%= (a.correct and @grading!=nil) ? "correct_answer":"" %>">
 					<!-- <span class="box"></span> -->
-					<%# check_box_tag("valik") %> 
+					<%# check_box_tag("valik") %>
+                  <%= a.inspect %>
 					<span class="content"><%= a.content %></span>
 					<% if (a.correct and @grading!=nil) then %>
 						<span class="a_points">(<%= a.points %> p)</span> 
@@ -53,6 +60,7 @@ Testi hoiatus, et kirjutada selgelt, mitte sodida, soditud (ka ebaselge nimi jmt
 				</li>
 			<% end %>
 		</ul>
+      <% end %>
 	</li>
 
 <% end %>

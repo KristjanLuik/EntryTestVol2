@@ -63,6 +63,9 @@ class AttemptsController < ApplicationController
 
 # display attempt ion test format - meant for simple users
 def display
+  @test = AttemptAnswer.where(attempt_id: @attempt.id) #@attempt.questions.first
+  #@attempt.questions.first.delete
+
  if !@attempt.start || @attempt.end then
    redirect_to @attempt, :flash => { :error => 'Attempt has to be active.' }
  end
